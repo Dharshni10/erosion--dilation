@@ -1,78 +1,63 @@
 # Implementation-of-Erosion-and-Dilation
-
-## Aim:
-
+## Aim
 To implement Erosion and Dilation using Python and OpenCV.
-
-## Software Required:
-
+## Software Required
 1. Anaconda - Python 3.7
 2. OpenCV
-
 ## Algorithm:
-
-Step1: Import the necessary pacakages
-
-Step2: Create the structuring element
-
-Step3: Create a 5x5 rectangular kernel using cv2.getStructuringElement() for morphological operations.
-
-Step4: Perform erosion and dilation on the image using cv2.erode() and cv2.dilate() with the defined kernel.
-
-Step5: Use matplotlib to display the original, eroded, and dilated images side-by-side for comparison.
-
- 
+### Step1:
+Import required libraries (OpenCV, NumPy) and load the image in grayscale.
+### Step2:
+Define a structuring element (kernel) for morphological operations.
+### Step3:
+Apply erosion using cv2.erode() on the image with the defined kernel.
+### Step4:
+Apply dilation using cv2.dilate() on the image with the same kernel.
+### Step5:
+Display and compare the original, eroded, and dilated images. 
 ## Program:
 ### Name : Dharshni V M
 ### Register Number : 212223240029
 ``` 
-
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-image = cv2.imread("bean.png")
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
-eroded_image = cv2.erode(image, kernel, iterations=1)
-dilated_image = cv2.dilate(image, kernel, iterations=1)
-image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-eroded_image_rgb = cv2.cvtColor(eroded_image, cv2.COLOR_BGR2RGB)
-dilated_image_rgb = cv2.cvtColor(dilated_image, cv2.COLOR_BGR2RGB)
-plt.figure(figsize=(8, 8))
-plt.subplot(1, 3, 1)
-plt.imshow(image_rgb)
-plt.title("Original Image")
-plt.axis("off")
-plt.tight_layout()
-plt.show()
-plt.figure(figsize=(8, 8))
-plt.subplot(1, 3, 2)
-plt.imshow(eroded_image_rgb)
-plt.title("Eroded Image")
-plt.axis("off")
-plt.tight_layout()
-plt.show()
-plt.figure(figsize=(8, 8))
-plt.subplot(1, 3, 3)
-plt.imshow(dilated_image_rgb)
-plt.title("Dilated Image")
-plt.axis("off")
-plt.tight_layout()
-plt.show()
 
+image = np.zeros((500, 500, 3), dtype=np.uint8)
+
+font = cv2.FONT_HERSHEY_SIMPLEX
+cv2.putText(image, 'DHARSHNI V M', (100, 250), font, 1, (255, 255, 255), 2, cv2.LINE_AA)
+
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)) 
+plt.title("Input Image with Text")
+plt.axis('off')
+
+kernel = np.ones((3, 3), np.uint8)
+eroded_image = cv2.erode(image, kernel, iterations=1)
+
+plt.imshow(cv2.cvtColor(eroded_image, cv2.COLOR_BGR2RGB))
+plt.title("Eroded Image")
+plt.axis('off')
+
+dilated_image = cv2.dilate(image, kernel, iterations=1)
+
+plt.imshow(cv2.cvtColor(dilated_image, cv2.COLOR_BGR2RGB)) 
+plt.title("Dilated Image")
+plt.axis('off')
 ```
 ## Output:
 
-### Display the input Image
+### Display the Input Image
 
-![original](https://github.com/user-attachments/assets/c640014d-ce67-439f-bcd8-a386d6c56175)
+![Input](https://github.com/user-attachments/assets/9fd1f59a-06de-4070-a28b-75acb12d9782)
 
 ### Display the Eroded Image
 
-![eroded](https://github.com/user-attachments/assets/cd46913f-0d0e-4a0b-9609-7bc19b0fdee5)
+![Eroded](https://github.com/user-attachments/assets/55726d1e-7855-4e72-8d3e-52566faa3b66)
 
 ### Display the Dilated Image
 
-![dilated](https://github.com/user-attachments/assets/73076454-aec4-4f16-acea-d9379dc3ec30)
+![Dilated](https://github.com/user-attachments/assets/a2e5b616-a1a7-4cf3-8372-244f3730ae82)
 
 ## Result
-Thus the generated image is eroded and dilated using python and OpenCV.
+Thus the generated text image is eroded and dilated using python and OpenCV.
